@@ -45,7 +45,7 @@ NextJS, next-auth を用いて、Google のアカウントでログインする�
     - 承認済みの JavaScript 生成元: http://localhost:3000
     - 承認済みのリダイレクト URI:
       - http://localhost:3000
-      - http://localhost:3000/auth/callback/google
+      - http://localhost:3000/api/auth/callback/google
 
     をそれぞれ指定し、作成ボタンを押下した。
 
@@ -53,7 +53,7 @@ NextJS, next-auth を用いて、Google のアカウントでログインする�
 
 ### next-project の設定
 
-1. /.env.local.sample をコピーし、/.env.local を作成する。
+1. /env.ts.sample をコピーし、/env.ts を作成する。
 2. GOOGLE_ID, GOOGLE_SECRET に、先程控えたクライアント ID とクライアントシークレットをそれぞれ指定する。
 3. Linux or Mac:  
    ターミナル上で `$ openssl rand -hex 32` を実行し、出力された暗号を SECRET に指定する。  
