@@ -6,7 +6,7 @@ const UserIdentify = () => {
   const { data: session } = useSession();
 
   if (session) {
-    const userName = session?.user?.email ?? "UNDEFINED";
+    const userName = session?.user?.name ?? "UNDEFINED";
 
     return (
       <div className="flex flex-row items-center space-x-2">
@@ -25,7 +25,7 @@ const UserIdentify = () => {
     <div className="flex flex-row items-center space-x-2">
       <button
         className="px-2 py-1 rounded-md bg-amber-500 hover:bg-amber-600 text-stone-900"
-        onClick={() => signIn()}
+        onClick={() => signIn("google")}
       >
         ログイン
       </button>
