@@ -31,11 +31,8 @@ const Sidebar = (props: SidebarProps) => {
     <aside className="w-64 p-4 overflow-y-auto bg-stone-700 text-stone-100">
       <ul>
         {SidebarItems.map((sidebarItem) => (
-          <Link href={sidebarItem.href}>
-            <li
-              key={`${sidebarItem.name}_sidebarItem`}
-              className="hover:cursor-pointer hover:underline"
-            >
+          <Link key={`${sidebarItem.name}_Link`} href={sidebarItem.href}>
+            <li className="hover:cursor-pointer hover:underline">
               {sidebarItem.title}
             </li>
           </Link>

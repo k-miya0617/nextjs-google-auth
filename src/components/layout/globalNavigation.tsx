@@ -1,11 +1,33 @@
+import { useSession, signIn, signOut } from "next-auth/react";
+
 interface GlobalNavigationProps {}
 
 const UserIdentify = () => {
+  const { data: session } = useSession();
+
+  if (session) {
+    const userName = session?.user?.email ?? "UNDEFINED";
+
+    return (
+      <div className="flex flex-row items-center space-x-2">
+        <p>ようこそ! {userName} さん！</p>
+        <button
+          className="px-2 py-1 rounded-md bg-amber-500 hover:bg-amber-600 text-stone-900"
+          onClick={() => signOut()}
+        >
+          ログアウト
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-row items-center space-x-2">
-      <p>ようこそ! XXXさん</p>
-      <button className="px-2 py-1 rounded-md bg-amber-500 hover:bg-amber-600 text-stone-900">
-        ログアウト
+      <button
+        className="px-2 py-1 rounded-md bg-amber-500 hover:bg-amber-600 text-stone-900"
+        onClick={() => signIn()}
+      >
+        ログイン
       </button>
     </div>
   );
