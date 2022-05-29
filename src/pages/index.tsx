@@ -17,7 +17,9 @@ const Home: NextPage = () => {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
-        <h1 className="text-3xl font-bold underline">Tailwind style test</h1>
+        <h1 className="text-3xl font-bold underline text-amber-500">
+          Tailwind style test
+        </h1>
 
         <p className={styles.description}>
           Get started by editing{" "}
