@@ -2,20 +2,9 @@ import type { NextPage } from "next";
 import Layout from "../layout/layout";
 
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
-// import { useSession } from "next-auth/client";
 
 const Home: NextPage = () => {
-  // const { data: session, loadingSession } = useSession();
-
-  // if (loadingSession) <h1>Loading...</h1>;
-
   const { data: session } = useSession();
-  const [session2, setSession2] = useState<any>();
-
-  useEffect(() => {
-    setSession2(session);
-  }, [session]);
 
   return (
     <Layout>
@@ -36,7 +25,7 @@ const Home: NextPage = () => {
         </div>
         <div>
           <h2>JSON</h2>
-          <p>{JSON.stringify(session2)}</p>
+          <p>{JSON.stringify(session)}</p>
         </div>
       </div>
     </Layout>
