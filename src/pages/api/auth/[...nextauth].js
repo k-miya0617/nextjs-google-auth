@@ -2,14 +2,26 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import AzureADProvider from "next-auth/providers/azure-ad";
 
+// Googleのアカウントのログイン時に使う環境変数の取得
 const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, SECRET } = process.env;
 
-// env.local へ登録されているかを確認
+// Azureのアカウントのログイン時に使う環境変数の取得
+const { AZURE_AD_CLIENT_ID, AZURE_AD_CLIENT_SECRET, AZURE_AD_TENANT_ID } =
+  process.env;
+
+// 各環境変数の存在確認
 if (!GOOGLE_CLIENT_ID)
   throw new Error("You must provide GOOGLE_CLIENT_ID env var.");
 if (!GOOGLE_CLIENT_SECRET)
   throw new Error("You must provide GOOGLE_CLIENT_SECRET env var.");
 if (!SECRET) throw new Error("You must provide SECRET env var.");
+
+if (!AZURE_AD_CLIENT_ID)
+  throw new Error("You must provide AZURE_AD_CLIENT_ID env var.");
+if (!AZURE_AD_CLIENT_SECRET)
+  throw new Error("You must provide AZURE_AD_CLIENT_SECRET env var.");
+if (!AZURE_AD_TENANT_ID)
+  throw new Error("You must provide AZURE_AD_TENANT_ID env var.");
 
 export default NextAuth({
   providers: [
@@ -20,9 +32,9 @@ export default NextAuth({
         "https://accounts.google.com/o/oauth2/v2/auth?prompt=consent&access_type=offline&response_type=code",
     }),
     AzureADProvider({
-      clientId: process.env.AZURE_AD_CLIENT_ID,
-      clientSecret: process.env.AZURE_AD_CLIENT_SECRET,
-      tenantId: process.env.AZURE_AD_TENANT_ID,
+      clientId: AZURE_AD_CLIENT_ID,
+      clientSecret: AZURE_AD_CLIENT_SECRET,
+      tenantId: AZURE_AD_TENANT_ID,
     }),
   ],
   secret: process.env.SECRET,
